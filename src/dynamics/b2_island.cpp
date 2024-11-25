@@ -346,44 +346,44 @@ void b2Island::Solve(b2Profile* profile, const b2TimeStep& step, const b2Vec2& g
 
 	Report(contactSolver.m_velocityConstraints);
 
-	if (allowSleep)
-	{
-		float minSleepTime = b2_maxFloat;
-
-		const float linTolSqr = b2_linearSleepTolerance * b2_linearSleepTolerance;
-		const float angTolSqr = b2_angularSleepTolerance * b2_angularSleepTolerance;
-
-		for (int32 i = 0; i < m_bodyCount; ++i)
-		{
-			b2Body* b = m_bodies[i];
-			if (b->GetType() == b2_staticBody)
-			{
-				continue;
-			}
-
-			if ((b->m_flags & b2Body::e_autoSleepFlag) == 0 ||
-				b->m_angularVelocity * b->m_angularVelocity > angTolSqr ||
-				b2Dot(b->m_linearVelocity, b->m_linearVelocity) > linTolSqr)
-			{
-				b->m_sleepTime = 0.0f;
-				minSleepTime = 0.0f;
-			}
-			else
-			{
-				b->m_sleepTime += h;
-				minSleepTime = b2Min(minSleepTime, b->m_sleepTime);
-			}
-		}
-
-		if (minSleepTime >= b2_timeToSleep && positionSolved)
-		{
-			for (int32 i = 0; i < m_bodyCount; ++i)
-			{
-				b2Body* b = m_bodies[i];
-				b->SetAwake(false);
-			}
-		}
-	}
+	// if (allowSleep)
+	// {
+	// 	float minSleepTime = b2_maxFloat;
+	//
+	// 	const float linTolSqr = b2_linearSleepTolerance * b2_linearSleepTolerance;
+	// 	const float angTolSqr = b2_angularSleepTolerance * b2_angularSleepTolerance;
+	//
+	// 	for (int32 i = 0; i < m_bodyCount; ++i)
+	// 	{
+	// 		b2Body* b = m_bodies[i];
+	// 		if (b->GetType() == b2_staticBody)
+	// 		{
+	// 			continue;
+	// 		}
+	//
+	// 		if ((b->m_flags & b2Body::e_autoSleepFlag) == 0 ||
+	// 			b->m_angularVelocity * b->m_angularVelocity > angTolSqr ||
+	// 			b2Dot(b->m_linearVelocity, b->m_linearVelocity) > linTolSqr)
+	// 		{
+	// 			b->m_sleepTime = 0.0f;
+	// 			minSleepTime = 0.0f;
+	// 		}
+	// 		else
+	// 		{
+	// 			b->m_sleepTime += h;
+	// 			minSleepTime = b2Min(minSleepTime, b->m_sleepTime);
+	// 		}
+	// 	}
+	//
+	// 	if (minSleepTime >= b2_timeToSleep && positionSolved)
+	// 	{
+	// 		for (int32 i = 0; i < m_bodyCount; ++i)
+	// 		{
+	// 			b2Body* b = m_bodies[i];
+	// 			b->SetAwake(false);
+	// 		}
+	// 	}
+	// }
 }
 
 void b2Island::SolveTOI(const b2TimeStep& subStep, int32 toiIndexA, int32 toiIndexB)
