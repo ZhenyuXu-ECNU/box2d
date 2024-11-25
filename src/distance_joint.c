@@ -52,7 +52,6 @@ void b2DistanceJoint_SetLengthRange( b2JointId jointId, float minLength, float m
 {
 	b2JointSim* base = b2GetJointSimCheckType( jointId, b2_distanceJoint );
 	b2DistanceJoint* joint = &base->distanceJoint;
-
 	minLength = b2ClampFloat( minLength, b2_linearSlop, b2_huge );
 	maxLength = b2ClampFloat( maxLength, b2_linearSlop, b2_huge );
 	joint->minLength = b2MinFloat( minLength, maxLength );

@@ -754,9 +754,9 @@ void b2World_Step( b2WorldId worldId, float timeStep, int subStepCount )
 	context.jointSoftness = b2MakeSoft( jointHertz, world->jointDampingRatio, context.h );
 
 	context.restitutionThreshold = world->restitutionThreshold;
+	/*context.restitutionThreshold = 0.0f;*/
 	context.maxLinearVelocity = world->maxLinearVelocity;
 	context.enableWarmStarting = world->enableWarmStarting;
-
 	// Update contacts
 	{
 		b2Timer timer = b2CreateTimer();

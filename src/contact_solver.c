@@ -1787,7 +1787,8 @@ void b2ApplyRestitutionTask( int startIndex, int endIndex, b2StepContext* contex
 
 	b2BodyState* states = context->states;
 	b2ContactConstraintSIMD* constraints = context->graph->colors[colorIndex].simdConstraints;
-	b2FloatW threshold = b2SplatW( context->world->restitutionThreshold );
+	//b2FloatW threshold = b2SplatW( context->world->restitutionThreshold );
+	b2FloatW threshold = b2SplatW( 0.0f );
 	b2FloatW zero = b2ZeroW();
 
 	for ( int i = startIndex; i < endIndex; ++i )
