@@ -271,8 +271,10 @@ static void b2FinalizeBodiesTask( int startIndex, int endIndex, uint32_t threadI
 			// Body is not sleepy
 			body->sleepTime = 0.0f;
 
-			const float saftetyFactor = 0.5f;
-			if ( body->type == b2_dynamicBody && enableContinuous && maxVelocity * timeStep > saftetyFactor * sim->minExtent )
+			/*const float saftetyFactor = 0.5f;*/
+			// check whether the threshold is needed
+			/*if ( body->type == b2_dynamicBody && enableContinuous && maxVelocity * timeStep > saftetyFactor * sim->minExtent )*/
+			if ( body->type == b2_dynamicBody && enableContinuous)
 			{
 				// Store in fast array for the continuous collision stage
 				// This is deterministic because the order of TOI sweeps doesn't matter
@@ -725,7 +727,7 @@ void b2SolverTask( int startIndex, int endIndex, uint32_t threadIndexDontUse, vo
 
 		// Restitution
 		{
-			b2ApplyOverflowRestitution( context );
+			// b2ApplyOverflowRestitution( context );
 
 			int iterStageIndex = stageIndex;
 			for ( int colorIndex = 0; colorIndex < activeColorCount; ++colorIndex )
@@ -735,7 +737,7 @@ void b2SolverTask( int startIndex, int endIndex, uint32_t threadIndexDontUse, vo
 				b2ExecuteMainStage( stages + iterStageIndex, context, syncBits );
 				iterStageIndex += 1;
 			}
-			// graphSyncIndex += 1;
+			graphSyncIndex += 1;
 			stageIndex += activeColorCount;
 		}
 

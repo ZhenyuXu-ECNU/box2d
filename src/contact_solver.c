@@ -1581,7 +1581,7 @@ void b2SolveContactsTask( int startIndex, int endIndex, b2StepContext* context, 
 
 	b2BodyState* states = context->states;
 	b2ContactConstraintSIMD* constraints = context->graph->colors[colorIndex].simdConstraints;
-	b2FloatW inv_h = b2SplatW( context->inv_h );
+	b2FloatW inv_h = b2SplatW( context->inv_h );  // 240Hz
 	b2FloatW minBiasVel = b2SplatW( -context->world->contactPushoutVelocity );
 
 	for ( int i = startIndex; i < endIndex; ++i )
@@ -1653,7 +1653,7 @@ void b2SolveContactsTask( int startIndex, int endIndex, b2StepContext* context, 
 
 			bB.v.X = b2MulAddW( bB.v.X, c->invMassB, Px );
 			bB.v.Y = b2MulAddW( bB.v.Y, c->invMassB, Py );
-			bB.w = b2MulAddW( bB.w, c->invIB, b2SubW( b2MulW( rB.X, Py ), b2MulW( rB.Y, Px ) ) );
+ 			bB.w = b2MulAddW( bB.w, c->invIB, b2SubW( b2MulW( rB.X, Py ), b2MulW( rB.Y, Px ) ) );
 		}
 
 		// second point non-penetration constraint
