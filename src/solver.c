@@ -680,7 +680,7 @@ void b2SolverTask( int startIndex, int endIndex, uint32_t threadIndexDontUse, vo
 			profile->warmStart += b2GetMillisecondsAndReset( &timer );
 
 			// solve constraints
-			bool useBias = true;
+			bool useBias = false;
 			b2SolveOverflowJoints( context, useBias );
 			b2SolveOverflowContacts( context, useBias );
 
@@ -706,8 +706,8 @@ void b2SolverTask( int startIndex, int endIndex, uint32_t threadIndexDontUse, vo
 
 			// relax constraints
 			useBias = false;
-			b2SolveOverflowJoints( context, useBias );
-			b2SolveOverflowContacts( context, useBias );
+			//b2SolveOverflowJoints( context, useBias );
+			//b2SolveOverflowContacts( context, useBias );
 
 			for ( int colorIndex = 0; colorIndex < activeColorCount; ++colorIndex )
 			{
@@ -727,7 +727,7 @@ void b2SolverTask( int startIndex, int endIndex, uint32_t threadIndexDontUse, vo
 
 		// Restitution
 		{
-			// b2ApplyOverflowRestitution( context );
+			b2ApplyOverflowRestitution( context );
 
 			int iterStageIndex = stageIndex;
 			for ( int colorIndex = 0; colorIndex < activeColorCount; ++colorIndex )

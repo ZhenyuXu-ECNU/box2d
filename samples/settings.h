@@ -18,7 +18,7 @@ struct Settings
 	// int windowHeight = 720;
 	// int windowWidth = 800;
 	// int windowHeight = 600;
-	float hertz = 60.0f;
+	float hertz = 50.0f;
 	int subStepCount = 4;
 	int workerCount = 1;
 	bool useCameraBounds = false;
@@ -34,7 +34,7 @@ struct Settings
 	bool drawGraphColors = false;
 	bool drawCounters = false;
 	bool drawProfile = false;
-	bool enableWarmStarting = true;
+	bool enableWarmStarting = false;
 	bool enableContinuous = true;
 	bool enableSleep = true;
 	bool pause = false;
